@@ -8,14 +8,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import dagger.hilt.android.AndroidEntryPoint
 import me.dio.copa.catar.extensions.observe
-import me.dio.copa.catar.notification.scheduler.extensions.NotificationMatcherWorker
+import me.dio.copa.catar.notification.scheduler.extensions.NotificationMatchesWorker
 import me.dio.copa.catar.ui.theme.Copa2022Theme
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
-    private val viewModel by viewModels<MainViewModel>()
-
+    private val viewModel: MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         observeActions()
@@ -26,19 +24,17 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-
     private fun observeActions() {
         viewModel.action.observe(this) { action ->
             when (action) {
                 is MainUiAction.MatchesNotFound -> TODO()
                 MainUiAction.Unexpected -> TODO()
                 is MainUiAction.DisableNotification ->
-                    NotificationMatcherWorker.cancel(applicationContext, action.match)
+                    NotificationMatchesWorker.cancel(applicationContext, action.match)
                 is MainUiAction.EnableNotification ->
-                    NotificationMatcherWorker.start(applicationContext, action.match)
+                    NotificationMatchesWorker.start(applicationContext, action.match)
             }
         }
     }
-
 
 }

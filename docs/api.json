@@ -7,7 +7,7 @@
     },
     "team1": "BR",
     "team2": "RS",
-    "date": "2023-09-16T23:00:00Z"
+    "date": "2023-9-14T17:50:00Z"
   },
   {
     "name": "2ª RODADA",
@@ -17,7 +17,7 @@
     },
     "team1": "BR",
     "team2": "CH",
-    "date": "2023-09-17T23:00:00Z"
+    "date": "22023-09-15T23:00:00Z"
   },
   {
     "name": "3ª RODADA",
@@ -27,26 +27,6 @@
     },
     "team1": "CM",
     "team2": "BR",
-    "date": "2023-09-18T23:00:00Z"
-  },
-  {
-    "name": "Semi Final",
-    "stadium": {
-      "name": "LUSAIL",
-      "image": "https://digitalinnovationone.github.io/copa-2022-android/statics/lusali-stadium.png"
-    },
-    "team1": "BR",
-    "team2": "AR",
-    "date": "2023-09-19T23:00:00Z"
-  },
-  {
-    "name": "FINAL",
-    "stadium": {
-      "name": "LUSAIL",
-      "image": "https://digitalinnovationone.github.io/copa-2022-android/statics/lusali-stadium.png"
-    },
-    "team1": "BR",
-    "team2": "FR",
     "date": "2023-09-15T23:00:00Z"
   }
 ]

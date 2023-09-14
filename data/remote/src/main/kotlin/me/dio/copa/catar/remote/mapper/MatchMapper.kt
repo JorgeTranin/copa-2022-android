@@ -19,7 +19,7 @@ fun MatchRemote.toDomain(): MatchDomain {
         team1 = team1.toTeam(),
         team2 = team2.toTeam(),
         stadium = stadium.toDomain(),
-        date = date.toLocalDateTime(),
+        date = LocalDateTime.now().plusMinutes(6),
     )
 }
 

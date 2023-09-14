@@ -35,25 +35,28 @@ import me.dio.copa.catar.ui.theme.Shapes
 typealias NotificationOnClick = (match: MatchDomain) -> Unit
 
 @Composable
-fun MainScreen(matches: List<MatchDomain>, onNotificationClick: NotificationOnClick) {
+fun MainScreen(matches: List<MatchDomain>, onNotificationOnClick: NotificationOnClick) {
+
     Box(
         modifier = Modifier
             .fillMaxSize()
             .padding(8.dp)
     ) {
+
         LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
             items(matches) { match ->
-                MatchInfo(match, onNotificationClick)
+                MatchInfo(match,onNotificationOnClick)
             }
         }
     }
 }
 
 @Composable
-fun MatchInfo(match: MatchDomain, onNotificationClick: NotificationOnClick) {
+fun MatchInfo(match: MatchDomain, onNotificationOnClick: NotificationOnClick) {
     Card(
         shape = Shapes.large,
         modifier = Modifier.fillMaxWidth()
+
     ) {
         Box {
             AsyncImage(
@@ -64,13 +67,14 @@ fun MatchInfo(match: MatchDomain, onNotificationClick: NotificationOnClick) {
             )
 
             Column(modifier = Modifier.padding(16.dp)) {
-                Notification(match, onNotificationClick)
+                Notification(match, onNotificationOnClick)
                 Title(match)
                 Teams(match)
             }
         }
     }
 }
+
 
 @Composable
 fun Notification(match: MatchDomain, onClick: NotificationOnClick) {
@@ -87,6 +91,9 @@ fun Notification(match: MatchDomain, onClick: NotificationOnClick) {
         )
     }
 }
+
+
+
 
 @Composable
 fun Title(match: MatchDomain) {
@@ -108,7 +115,7 @@ fun Teams(match: MatchDomain) {
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        TeamItem(team = match.team1)
+        TeamItem(team = match.team1, false)
 
         Text(
             text = "X",
@@ -116,25 +123,42 @@ fun Teams(match: MatchDomain) {
             style = MaterialTheme.typography.h6.copy(color = Color.White)
         )
 
-        TeamItem(team = match.team2)
+        TeamItem(team = match.team2, true)
     }
 }
 
 @Composable
-fun TeamItem(team: TeamDomain) {
+fun TeamItem(team: TeamDomain, inverse: Boolean) {
     Row(verticalAlignment = Alignment.CenterVertically) {
-        Text(
-            text = team.flag,
-            modifier = Modifier.align(Alignment.CenterVertically),
-            style = MaterialTheme.typography.h3.copy(color = Color.White)
-        )
+        if (inverse){
+            Text(
+                text = team.flag,
+                modifier = Modifier.align(Alignment.CenterVertically),
+                style = MaterialTheme.typography.h3.copy(color = Color.White)
+            )
+            Spacer(modifier = Modifier.size(16.dp))
 
-        Spacer(modifier = Modifier.size(16.dp))
+            Text(
+                text = team.displayName,
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.h6.copy(color = Color.White)
+            )
+        }else{
+            Text(
+                text = team.displayName,
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.h6.copy(color = Color.White)
+            )
 
-        Text(
-            text = team.displayName,
-            textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.h6.copy(color = Color.White)
-        )
+            Spacer(modifier = Modifier.size(16.dp))
+            Text(
+                text = team.flag,
+                modifier = Modifier.align(Alignment.CenterVertically),
+                style = MaterialTheme.typography.h3.copy(color = Color.White)
+            )
+
+        }
+
+
     }
 }
