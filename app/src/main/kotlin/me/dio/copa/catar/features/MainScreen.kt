@@ -111,7 +111,7 @@ fun Teams(match: MatchDomain) {
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        TeamItem(team = match.team1)
+        TeamItem(team = match.team1, false)
 
         Text(
             text = "X",
@@ -119,25 +119,42 @@ fun Teams(match: MatchDomain) {
             style = MaterialTheme.typography.h6.copy(color = Color.White)
         )
 
-        TeamItem(team = match.team2)
+        TeamItem(team = match.team2, true)
     }
 }
 
 @Composable
-fun TeamItem(team: TeamDomain) {
+fun TeamItem(team: TeamDomain, inverse: Boolean) {
     Row(verticalAlignment = Alignment.CenterVertically) {
-        Text(
-            text = team.flag,
-            modifier = Modifier.align(Alignment.CenterVertically),
-            style = MaterialTheme.typography.h3.copy(color = Color.White)
-        )
+        if (inverse){
+            Text(
+                text = team.flag,
+                modifier = Modifier.align(Alignment.CenterVertically),
+                style = MaterialTheme.typography.h3.copy(color = Color.White)
+            )
+            Spacer(modifier = Modifier.size(16.dp))
 
-        Spacer(modifier = Modifier.size(16.dp))
+            Text(
+                text = team.displayName,
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.h6.copy(color = Color.White)
+            )
+        }else{
+            Text(
+                text = team.displayName,
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.h6.copy(color = Color.White)
+            )
 
-        Text(
-            text = team.displayName,
-            textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.h6.copy(color = Color.White)
-        )
+            Spacer(modifier = Modifier.size(16.dp))
+            Text(
+                text = team.flag,
+                modifier = Modifier.align(Alignment.CenterVertically),
+                style = MaterialTheme.typography.h3.copy(color = Color.White)
+            )
+
+        }
+
+
     }
 }

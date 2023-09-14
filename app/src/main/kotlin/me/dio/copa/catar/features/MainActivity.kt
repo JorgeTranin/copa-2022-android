@@ -1,15 +1,11 @@
 package me.dio.copa.catar.features
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.tooling.preview.Preview
 import dagger.hilt.android.AndroidEntryPoint
 import me.dio.copa.catar.ui.theme.Copa2022Theme
 
@@ -26,17 +22,4 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Composable
-@Preview(showBackground = true)
-fun DefaultPreview() {
-    Copa2022Theme {
-        Greeting("Android")
-    }
 }
