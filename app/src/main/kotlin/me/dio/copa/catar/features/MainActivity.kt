@@ -17,7 +17,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             Copa2022Theme {
                 val state by viewModel.state.collectAsState()
-                MainScreen(matches = state.matches)
+                MainScreen(matches = state.matches, viewModel::toggleNotification)
             }
         }
     }

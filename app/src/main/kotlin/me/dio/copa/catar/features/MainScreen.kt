@@ -32,8 +32,10 @@ import me.dio.copa.catar.domain.model.MatchDomain
 import me.dio.copa.catar.domain.model.TeamDomain
 import me.dio.copa.catar.ui.theme.Shapes
 
+typealias NotificationOnClick = (match: MatchDomain) -> Unit
+
 @Composable
-fun MainScreen(matches: List<MatchDomain>) {
+fun MainScreen(matches: List<MatchDomain>, onNotificationOnClick: NotificationOnClick) {
 
     Box(
         modifier = Modifier
@@ -43,14 +45,14 @@ fun MainScreen(matches: List<MatchDomain>) {
 
         LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
             items(matches) { match ->
-                MatchInfo(match)
+                MatchInfo(match,onNotificationOnClick)
             }
         }
     }
 }
 
 @Composable
-fun MatchInfo(match: MatchDomain) {
+fun MatchInfo(match: MatchDomain, onNotificationOnClick: NotificationOnClick) {
     Card(
         shape = Shapes.large,
         modifier = Modifier.fillMaxWidth()
@@ -65,7 +67,7 @@ fun MatchInfo(match: MatchDomain) {
             )
 
             Column(modifier = Modifier.padding(16.dp)) {
-                Notification(match)
+                Notification(match, onNotificationOnClick)
                 Title(match)
                 Teams(match)
             }
@@ -75,7 +77,7 @@ fun MatchInfo(match: MatchDomain) {
 
 
 @Composable
-fun Notification(match: MatchDomain) {
+fun Notification(match: MatchDomain, onClick: NotificationOnClick) {
     Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
         val drawable = if (match.notificationEnabled) R.drawable.ic_notifications_active
         else R.drawable.ic_notifications
@@ -83,12 +85,14 @@ fun Notification(match: MatchDomain) {
         Image(
             painter = painterResource(id = drawable),
             modifier = Modifier.clickable {
-                //onClick(match)
+                onClick(match)
             },
             contentDescription = null
         )
     }
 }
+
+
 
 
 @Composable
