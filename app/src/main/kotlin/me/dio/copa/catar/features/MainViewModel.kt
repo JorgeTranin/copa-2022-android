@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import me.dio.copa.catar.core.BaseViewModel
-import me.dio.copa.catar.domain.model.Match
 import me.dio.copa.catar.domain.model.MatchDomain
 import me.dio.copa.catar.domain.usecase.DisableNotificationUseCase
 import me.dio.copa.catar.domain.usecase.EnableNotificationUseCase
