@@ -12,6 +12,7 @@ import androidx.work.workDataOf
 import me.dio.copa.catar.domain.model.MatchDomain
 import java.time.Duration
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.Date
 
 private const val NOTIFICATION_TITLE_KEY = "NOTIFICATION_TITLE_KEY"
@@ -36,7 +37,7 @@ class NotificationMatchesWorker(
         fun start(context: Context, match: MatchDomain) {
             val (id, _, _, team1, team2, date) = match
 
-            val initialDelay = Duration.between(LocalDate.now(), date).minusMinutes(5)
+            val initialDelay = Duration.between(LocalDateTime.now(), date).minusMinutes(5)
             val inputData = workDataOf(
                 NOTIFICATION_TITLE_KEY to "O jogo vai começar fique pronto",
                 NOTIFICATION_CONTENT_KEY to "jogo ${team1} - ${team2} mais tarde prepare a pipoca"
